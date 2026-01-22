@@ -1,0 +1,7 @@
+ultralytics
+fastapi
+python-multipart
+uvicorn
+pillow
+opencv-python-headless
+pyzbar

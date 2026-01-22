@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  barcode-api:
+    build: .
+    container_name: barcode-scanner
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./detections:/app/detections
+    environment:
+      - MODEL_PATH=best.pt
+    restart: always
+    networks:
+      - barcode-network
+
+  barcode-frontend:
+    build: ./frontend
+    container_name: barcode-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://barcode-api:8080
+    depends_on:
+      - barcode-api
+    restart: always
+    networks:
+      - barcode-network
+
+networks:
+  barcode-network:
+    driver: bridge
