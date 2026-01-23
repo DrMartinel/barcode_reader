@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   barcode-api:
-    build: .
+ #   build: .
+    image: drmartinel/barcode-detector-api:v1
     container_name: barcode-scanner
     ports:
       - "8080:8080"
@@ -15,7 +16,8 @@ services:
       - barcode-network
 
   barcode-frontend:
-    build: ./frontend
+  #   build: ./frontend
+    image: drmartinel/barcode-detector-client:v1
     container_name: barcode-frontend
     ports:
       - "3000:3000"

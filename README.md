@@ -42,19 +42,24 @@ npm run build
 npm start
 ```
 
-## Docker Deployment
+## Docker Deployment (published images)
 
-Build and run with Docker Compose from the root directory:
+Run the stack using the public images from Docker Hub:
 
 ```bash
-docker-compose up --build
+docker compose up -d
 ```
 
-The frontend will be available at [http://localhost:3000](http://localhost:3000)
+- Images pulled: `drmartinel/barcode-detector-api:v1` and `drmartinel/barcode-detector-client:v1`
+- API listens on port 8080, frontend on port 3000
+- Detections are persisted to `./detections` (bind-mounted into the API container)
 
 ### Environment Variables (Docker)
 
 - `NEXT_PUBLIC_API_URL`: Backend API URL (default: `http://barcode-api:8080`)
+- `MODEL_PATH`: Path to the model file inside the API container (default: `best.pt`)
+
+The frontend will be available at [http://localhost:3000](http://localhost:3000)
 
 ## How to Use
 
